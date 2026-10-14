@@ -1,1 +1,16 @@
+services:
+  postgres:
+    build: . # Construye la imagen usando el Dockerfile en el directorio actual (.)
+    container_name: ContDBpractMod3 # Asigna un nombre específico al contenedor
+    ports:
+      - "5432:5432" # Mapea el puerto 5432 del host al puerto 5432 del contenedor
+    environment:
+      POSTGRES_USER: Admin # Define el usuario administrador de la base de datos
+      POSTGRES_PASSWORD: p4ssw0rdDB # Define la contraseña del usuario
+      POSTGRES_DB: credenciales # Define el nombre de la base de datos a crear
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Crea un volumen para persistir los datos
 
+volumes:
+  postgres_data:
+    driver: local # Indica que el volumen se almacenará localmente en el entorno de Codespaces
